@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react"
 
-function EditBook( {book, handleDelete, closeEdit} ){
+function EditBook( {book, handleDelete, handleEdit, closeEdit} ){
 
     const [title, setTitle] = useState(book.title)
     const [author, setAuthor] = useState(book.author)
@@ -16,17 +16,19 @@ function EditBook( {book, handleDelete, closeEdit} ){
             year_published: year
         }
 
-        fetch("/books/"+book.id, {
-            method: "PATCH", 
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(bookObj)
-        })
-        .then( r => r.json())
-        .then( data => {
+        handleEdit(book.id, bookObj)
 
-            console.log(data)
-            closeEdit()
-        })
+        // fetch("/books/"+book.id, {
+        //     method: "PATCH", 
+        //     headers: {"Content-Type": "application/json"},
+        //     body: JSON.stringify(bookObj)
+        // })
+        // .then( r => r.json())
+        // .then( data => {
+
+        //     console.log(data)
+        //     closeEdit()
+        // })
     }
 
 

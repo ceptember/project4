@@ -26,6 +26,24 @@ function BookList(){
         })
     }
 
+    function handleEdit(id, obj){
+        fetch("/books/"+id, {
+            method: "PATCH", 
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(obj)
+        })
+        .then( r => r.json())
+        .then( data => {
+
+            console.log(data)
+            closeEdit()
+            let otherBooks = books.filter( b => b.id != id)
+            let newBooks = [...otherBooks, data]
+            //console.log(newBooks)
+            setBooks(newBooks)
+        })
+    }
+
     function closeEdit(){
         setBookToEdit(null)
     }
@@ -40,7 +58,7 @@ function BookList(){
                         "{b.title}" by {b.author}, {b.year_published} 
                         {/* <button onClick={ (bookID) => handleDelete(b.id)}>✕</button> */}
                         <button  onClick={ ()=> setBookToEdit(b.id)}>✎</button>
-                        { bookToEdit == b.id ? <EditBook book={b} handleDelete={handleDelete} closeEdit={closeEdit} /> : ""}
+                        { bookToEdit == b.id ? <EditBook book={b} handleDelete={handleDelete} handleEdit={handleEdit} closeEdit={closeEdit} /> : ""}
                     </li> )}
             </ul>
         </div>
