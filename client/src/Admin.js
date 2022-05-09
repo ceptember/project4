@@ -51,11 +51,27 @@ function Admin(){
             body: JSON.stringify(bookObj) 
         })
         .then(r => r.json())
-        .then(data => console.log(data))
+        .then(data => {
+            let newBooks = [...books, data]
+            setBooks(newBooks)
+        })
 
         setBAuthor("")
         setBTitle("")
         setBYear("")
+    }
+
+    function deleteBook(bookID){
+     
+        fetch("/books/"+bookID, {
+            method: "DELETE"
+        })
+        .then(r => r.json())
+        .then( data => {
+            console.log(data)
+            let newBooks = books.filter( b => b.id != bookID)
+            setBooks(newBooks)
+        })
     }
 
 
@@ -134,7 +150,7 @@ function Admin(){
             <button onClick={ ()=> setNowViewing("characters")}>Characters</button>
             <button onClick={() => setNowViewing("quotes")}>Quotes</button>
 
-            { nowViewing == "books" ?  <BookList /> : "" }
+            { nowViewing == "books" ?  <BookList booksFromAdmin={books} deleteBook={deleteBook} /> : "" }
             { nowViewing == "characters" ?  <CharacterList /> : "" }
             { nowViewing == "quotes" ? <QuoteList /> : ""}
 

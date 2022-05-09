@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react"; 
 import EditBook from "./EditBook";
 
-function BookList(){
+function BookList({booksFromAdmin, deleteBook}){
 
     const [books, setBooks] = useState([])
     const [bookToEdit, setBookToEdit] = useState(null)
@@ -15,15 +15,7 @@ function BookList(){
 
     function handleDelete(bookID){
      
-        fetch("/books/"+bookID, {
-            method: "DELETE"
-        })
-        .then(r => r.json())
-        .then( data => {
-            console.log(data)
-            let newBooks = books.filter( b => b.id != bookID)
-            setBooks(newBooks)
-        })
+        deleteBook(bookID)
     }
 
     function handleEdit(id, obj){
@@ -39,7 +31,6 @@ function BookList(){
             closeEdit()
             let otherBooks = books.filter( b => b.id != id)
             let newBooks = [...otherBooks, data]
-            //console.log(newBooks)
             setBooks(newBooks)
         })
     }
@@ -53,7 +44,10 @@ function BookList(){
             Book List 
 
             <ul>
-                { books.map( (b) =>  
+                { 
+
+                //  books.map( (b) =>  
+                    booksFromAdmin.map( (b) => 
                     <li key={b.title}>
                         "{b.title}" by {b.author}, {b.year_published} 
                         {/* <button onClick={ (bookID) => handleDelete(b.id)}>✕</button> */}
