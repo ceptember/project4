@@ -37,6 +37,8 @@ function Admin(){
         .then( data => setBooks(data))
     }, [])
 
+    // ***** BOOKS *********
+
     function handleNewBook(e){
         e.preventDefault() 
         let bookObj = {
@@ -87,9 +89,7 @@ function Admin(){
         })
     } 
 
-
-
-
+    // ****** CHARACTERS ******** 
 
     function handleNewCharacter(e){
         e.preventDefault() 
@@ -111,6 +111,32 @@ function Admin(){
         setCSpecies("")
         setCHome("")
     }
+
+
+    function deleteCharacter(characterID){
+        fetch("/characters/"+characterID, {
+            method: "DELETE"
+        })
+        .then(r => r.json())
+        .then( data => {
+            let newCharacters = characters.filter( c => c.id != characterID)
+            setCharacters(newCharacters)
+        })
+    }
+
+    function editCharacter(id, obj){
+        fetch("/characters/"+id, {
+            method: "PATCH", 
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(obj)
+        })
+        .then( r => r.json())
+        .then( data => {
+            let otherCharacters = characters.filter( c => c.id != id)
+            let newCharacters = [...otherCharacters, data]
+            setCharacters(newCharacters)
+        })
+    } 
 
     return (
         <div>
@@ -167,7 +193,7 @@ function Admin(){
             <button onClick={() => setNowViewing("quotes")}>Quotes</button>
 
             { nowViewing == "books" ?  <BookList booksFromAdmin={books} deleteBook={deleteBook} editBook={editBook}/> : "" }
-            { nowViewing == "characters" ?  <CharacterList /> : "" }
+            { nowViewing == "characters" ?  <CharacterList characters={characters} deleteCharacter={deleteCharacter} editCharacter={editCharacter}/> : "" }
             { nowViewing == "quotes" ? <QuoteList /> : ""}
 
 

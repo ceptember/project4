@@ -1,20 +1,42 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import EditCharacter from "./EditCharacter";
 
-function CharacterList(){
+function CharacterList({characters, deleteCharacter, editCharacter}){
 
-    const [characters, setCharacters] = useState([])
-    useEffect( ()=>{
-        fetch('/characters')
-        .then(resp => resp.json())
-        .then(data => setCharacters(data) )
-    }, [])
+    const [characterToEdit, setCharacterToEdit] = useState(null)
+
+    // useEffect( ()=>{
+    //     fetch('/characters')
+    //     .then(resp => resp.json())
+    //     .then(data => setCharacters(data) )
+    // }, [])
+
+    function handleDelete(characterID){
+        deleteCharacter(characterID)
+    }
+
+    function handleEdit(id, obj){
+        editCharacter(id, obj)
+        closeEdit()
+    }
+
+    function closeEdit(){
+        setCharacterToEdit(null)
+    }
 
     return(
         <div>
             Character List 
             <ul>
-                { characters.map( c => <li key={c.name}> {c.name} </li>) }
+                { characters.map( (c) => 
+                    <li key={c.name}> 
+                        {c.name}, {c.species} from {c.home} 
+                        <button  onClick={ ()=> setCharacterToEdit(c.id)}>✎</button>
+                        { characterToEdit == c.id ? <EditCharacter character={c} handleDelete={handleDelete} handleEdit={handleEdit} closeEdit={closeEdit} /> : ""}
+
+
+                    </li>) }
             </ul>
         </div>
     )

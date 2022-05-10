@@ -17,20 +17,7 @@ function EditBook( {book, handleDelete, handleEdit, closeEdit} ){
         }
 
         handleEdit(book.id, bookObj)
-
-        // fetch("/books/"+book.id, {
-        //     method: "PATCH", 
-        //     headers: {"Content-Type": "application/json"},
-        //     body: JSON.stringify(bookObj)
-        // })
-        // .then( r => r.json())
-        // .then( data => {
-
-        //     console.log(data)
-        //     closeEdit()
-        // })
     }
-
 
     function onDeleteClick(){
         handleDelete(book.id)
