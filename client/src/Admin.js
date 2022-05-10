@@ -62,7 +62,6 @@ function Admin(){
     }
 
     function deleteBook(bookID){
-     
         fetch("/books/"+bookID, {
             method: "DELETE"
         })
@@ -73,6 +72,23 @@ function Admin(){
             setBooks(newBooks)
         })
     }
+
+    function editBook(id, obj){
+        fetch("/books/"+id, {
+            method: "PATCH", 
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(obj)
+        })
+        .then( r => r.json())
+        .then( data => {
+            let otherBooks = books.filter( b => b.id != id)
+            let newBooks = [...otherBooks, data]
+            setBooks(newBooks)
+        })
+    } 
+
+
+
 
 
     function handleNewCharacter(e){
@@ -150,7 +166,7 @@ function Admin(){
             <button onClick={ ()=> setNowViewing("characters")}>Characters</button>
             <button onClick={() => setNowViewing("quotes")}>Quotes</button>
 
-            { nowViewing == "books" ?  <BookList booksFromAdmin={books} deleteBook={deleteBook} /> : "" }
+            { nowViewing == "books" ?  <BookList booksFromAdmin={books} deleteBook={deleteBook} editBook={editBook}/> : "" }
             { nowViewing == "characters" ?  <CharacterList /> : "" }
             { nowViewing == "quotes" ? <QuoteList /> : ""}
 

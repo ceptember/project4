@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react"; 
 import EditBook from "./EditBook";
 
-function BookList({booksFromAdmin, deleteBook}){
+function BookList({booksFromAdmin, deleteBook, editBook}){
 
     const [books, setBooks] = useState([])
     const [bookToEdit, setBookToEdit] = useState(null)
@@ -14,25 +14,23 @@ function BookList({booksFromAdmin, deleteBook}){
     }, [])
 
     function handleDelete(bookID){
-     
         deleteBook(bookID)
     }
 
     function handleEdit(id, obj){
-        fetch("/books/"+id, {
-            method: "PATCH", 
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(obj)
-        })
-        .then( r => r.json())
-        .then( data => {
-
-            console.log(data)
-            closeEdit()
-            let otherBooks = books.filter( b => b.id != id)
-            let newBooks = [...otherBooks, data]
-            setBooks(newBooks)
-        })
+        // fetch("/books/"+id, {
+        //     method: "PATCH", 
+        //     headers: {"Content-Type": "application/json"},
+        //     body: JSON.stringify(obj)
+        // })
+        // .then( r => r.json())
+        // .then( data => {
+        //     let otherBooks = books.filter( b => b.id != id)
+        //     let newBooks = [...otherBooks, data]
+        //     setBooks(newBooks)
+        // })
+        editBook(id, obj)
+        closeEdit()
     }
 
     function closeEdit(){
