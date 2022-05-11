@@ -6,9 +6,9 @@ import QuoteList from './QuoteList'
 
 function Admin(){
 
-  
     const [characters, setCharacters] = useState([])
     const [books, setBooks] = useState([])
+    const [quotes, setQuotes] = useState([])
     const [nowViewing, setNowViewing] = useState("")
 
     // For new book, character, quote forms: 
@@ -23,8 +23,7 @@ function Admin(){
     const [qCharacter, setQCharacter] = useState("Characters")
     const [qBook, setQBook] = useState("Books")
 
-
-
+    // ***** FETCH BOOKS, CHARACTERS, QUOTES 
     useEffect( () => {
         fetch("/characters")
         .then( r => r.json())
@@ -35,6 +34,12 @@ function Admin(){
         fetch("/books")
         .then(r => r.json())
         .then( data => setBooks(data))
+    }, [])
+
+    useEffect( () => {
+        fetch("/quotes")
+        .then(r => r.json())
+        .then( data => setQuotes(data))
     }, [])
 
     // ***** BOOKS *********
@@ -112,7 +117,6 @@ function Admin(){
         setCHome("")
     }
 
-
     function deleteCharacter(characterID){
         fetch("/characters/"+characterID, {
             method: "DELETE"
@@ -137,6 +141,55 @@ function Admin(){
             setCharacters(newCharacters)
         })
     } 
+
+    // ***** 
+
+    function handleNewQuote(e){
+        e.preventDefault() 
+        let quoteObj = {
+            quote: qQuote,
+            character_id: 1, // NEED TO GET CHARACTER ID
+            book_id: 1 // NEED TO GET BOOK ID
+        }
+
+        fetch("/quotes", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(quoteObj)
+        })
+        .then(r => r.json())
+        .then(data => console.log(data))
+
+        setQQuote("")
+        setQCharacter("")
+        setQBook("")
+    }
+
+    function deleteQuote(quoteID){
+        fetch("/quotes/"+quoteID, {
+            method: "DELETE"
+        })
+        .then(r => r.json())
+        .then( data => {
+            let newQuotes = quotes.filter( q => q.id != quoteID)
+            setQuotes(newQuotes)
+        })
+    }
+
+    function editQuote(id, obj){
+        fetch("/quotes/"+id, {
+            method: "PATCH", 
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(obj)
+        })
+        .then( r => r.json())
+        .then( data => {
+            let otherQuotes = quotes.filter( q => q.id != id)
+            let newQuotes = [...otherQuotes, data]
+            setQuotes(newQuotes)
+        })
+    } 
+
 
     return (
         <div>
@@ -166,7 +219,7 @@ function Admin(){
             </form>
 
             <h4>Add a new quote:</h4>
-            <form>
+            <form onSubmit={ e => handleNewQuote(e)}>
                Quote: <textarea value={qQuote} onChange={e => setQQuote(e.target.value)}></textarea>
                <br />
                
@@ -194,7 +247,7 @@ function Admin(){
 
             { nowViewing == "books" ?  <BookList booksFromAdmin={books} deleteBook={deleteBook} editBook={editBook}/> : "" }
             { nowViewing == "characters" ?  <CharacterList characters={characters} deleteCharacter={deleteCharacter} editCharacter={editCharacter}/> : "" }
-            { nowViewing == "quotes" ? <QuoteList /> : ""}
+            { nowViewing == "quotes" ? <QuoteList quotes={quotes} deleteQuote={deleteQuote} editQuote={editQuote} /> : ""}
 
 
         </div>   

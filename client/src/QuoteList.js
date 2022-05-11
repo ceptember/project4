@@ -1,22 +1,34 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import EditQuote from "./EditQuote";
 
-function QuoteList(){
+function QuoteList({quotes, deleteQuote, editQuote}){
 
-    const [quotes, setQuotes] = useState([])
+    const [quoteToEdit, setQuoteToEdit] = useState(null)
 
-    useEffect( ()=>{
-        fetch('/quotes')
-        .then( resp => resp.json())
-        .then( data => setQuotes(data))
-    }, [])
+    function handleDelete(quoteID){
+        deleteQuote(quoteID)
+    }
+
+    function handleEdit(id, obj){
+        editQuote(id, obj)
+        closeEdit()
+    }
+
+    function closeEdit(){
+        setQuoteToEdit(null)
+    }
 
     return(
         <div>
             Quote List
 
             <ul>
-                { quotes.map( q => <li key={q.quote}> {q.quote} -{q.character.name} <button>✕</button><button>✎</button></li>)}
+                { quotes.map( (q) => 
+                    <li key={q.quote}> {q.quote} -{q.character.name} 
+                    <button  onClick={ ()=> setQuoteToEdit(q.id)}>✎</button>
+                    { quoteToEdit == q.id ? <EditQuote quote={q} handleDelete={handleDelete} handleEdit={handleEdit} closeEdit={closeEdit} /> : ""}
+                    </li>)}
             </ul>
         </div>
     )

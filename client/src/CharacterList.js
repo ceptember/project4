@@ -6,12 +6,6 @@ function CharacterList({characters, deleteCharacter, editCharacter}){
 
     const [characterToEdit, setCharacterToEdit] = useState(null)
 
-    // useEffect( ()=>{
-    //     fetch('/characters')
-    //     .then(resp => resp.json())
-    //     .then(data => setCharacters(data) )
-    // }, [])
-
     function handleDelete(characterID){
         deleteCharacter(characterID)
     }
