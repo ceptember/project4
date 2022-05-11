@@ -90,8 +90,8 @@ function App() {
    
     { isLoggedIn? "Welcome " + user + "!" : "Please log in" }
 
-   {/* { isLoggedIn?  <Admin /> : "" } */}
-   <Admin />
+   { isLoggedIn?  <Admin /> : "" }
+  
 
     <Footer />
 
