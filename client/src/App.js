@@ -1,19 +1,18 @@
 import logo from './logo.svg';
 import './App.css';
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, NavLink } from "react-router-dom";
 
 import Header from './Header';
 import Home from './Home';
 import Admin from './Admin';
 import Login from './Login';
+import Documentation from './Documentation';
 import Footer from './Footer';
 
 
 function App() {
 
-  // const [username, setUsername] = useState("")
-  // const [password, setPassword] = useState("")
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [user, setUser] = useState(null)
   const [error, setError] = useState(null)
@@ -37,8 +36,6 @@ function App() {
         }
     })
     
-    // setUsername("")
-    // setPassword("")
      setError(null)
   }
 
@@ -69,39 +66,33 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
+      <Header isLoggedIn={isLoggedIn} user={user} handleLogout={handleLogout}/>
      
-
-    {/* MOVE THESE TO OTHER COMPONENTS */}
-    {/* <h2> Database Admin Sign-in</h2>
-    <form onSubmit={submitLogin}>
-      <label htmlFor="usernameInput">Username:</label>
-      <input type="text" id="usernameInput" name="usernameInput" value={username} onChange={ e => setUsername(e.target.value)}></input>
-      <br />
-
-      <label htmlFor="passwordInput">Password:</label>
-      <input type="password" id="passwordInput" name="passwordInput" value={password} onChange={ e => setPassword(e.target.value)}></input>
-      <br />
-      <input type="submit"></input>
-      <br />
-      {error} */}
-    {/* </form> */}
+    <Route exact path="/">
+      <Home />
+    </Route>
 
     <Route path="/login">
       <Login  handleLogin={submitLogin} error={error}/>
     </Route>
+
+    <Route path="/documentation">
+      <Documentation />
+    </Route>
+
+    
+     <Route path="/admin">
+     { isLoggedIn?  <Admin /> : <div><h3>Please Log In</h3> <NavLink className='link' to={"/login"} > Login </NavLink> </div>  }
+     </Route>
     
 
-    <button onClick={ handleLogout} > Log out</button>
     <br />
    
-    { isLoggedIn? "Welcome " + user + "!" : "Please log in" }
+   
 
-   { isLoggedIn?  <Admin /> : "" }
   
-  <Route exact path="/">
-    <Home />
-  </Route>
+  
+
 
     <Footer />
 

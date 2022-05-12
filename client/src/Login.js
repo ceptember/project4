@@ -1,5 +1,6 @@
 import React from "react";
 import {useState} from "react"; 
+import { useHistory } from "react-router-dom"
 
 function Login({handleLogin, error}){
 
@@ -7,12 +8,15 @@ function Login({handleLogin, error}){
     const [password, setPassword] = useState("")
     // const [error, setError] = useState(null)
 
+    const history = useHistory()
     
   function submitLogin (e){
     e.preventDefault(); 
     handleLogin(username, password)
     setUsername("")
     setPassword("")
+
+    history.push("/admin")
    
   }
 
