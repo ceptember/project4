@@ -31,9 +31,21 @@ function EditCharacter( {character, handleDelete, handleEdit, closeEdit} ){
             <form onSubmit={ e => handleEditCharacter(e)}>
             Name: <input value={name} onChange={ e => setName(e.target.value) }></input> 
                 <br />
-                Species: <input value={species} onChange={e => setSpecies(e.target.value)}></input> 
+                Species: <select value={species} onChange={e => setSpecies(e.target.value)}>
+                <option disabled value="">Species</option>
+                <option value="Human">Human</option> 
+                <option value="Animal">Animal</option>
+                 
+                </select>
+
                 <br />
-                Home: <input value={home} onChange={e => setHome(e.target.value)}></input>
+                Home: <select value={home} onChange={e => setHome(e.target.value)}>
+                <option disabled value="">Home</option>
+                <option value="England">England</option>
+                <option value="Wonderland">Wonderland</option>
+               
+                </select>
+
                 <br />
                 <br />
                 <input type="submit"></input>

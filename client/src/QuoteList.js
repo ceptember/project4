@@ -23,10 +23,10 @@ function QuoteList({quotes, deleteQuote, editQuote}){
     return(
         <div>
             Quote List
-
             <ul>
                 { quotes.map( (q) => 
                     <li key={q.quote}> "{q.quote}" -{q.character.name} 
+                   {/* <li key={q.quote}> "{q.quote}" - */}
                     <button  onClick={ ()=> setQuoteToEdit(q.id)}>✎</button>
                     { quoteToEdit == q.id ? <EditQuote quote={q} handleDelete={handleDelete} handleEdit={handleEdit} closeEdit={closeEdit} /> : ""}
                     </li>)}
