@@ -17,6 +17,8 @@ function App() {
   const [user, setUser] = useState(null)
   const [error, setError] = useState(null)
 
+ 
+
   function submitLogin (username, password){
     fetch("/login", {
       method: "POST", 
@@ -63,6 +65,8 @@ function App() {
         setIsLoggedIn(false)
       }) 
   }
+
+
 
   return (
     <div className="App">
