@@ -7,16 +7,14 @@ function Home(){
     const [books, setBooks] = useState([])
     const [quotes, setQuotes] = useState([])
 
-    const placeholderObj = {
-        quote: "..."
-    }
-
-    
     const [randomCharacter, setRandomCharacter] = useState({})
     const [randomBook, setRandomBook] = useState({})
-    const [randomQuote, setRandomQuote] = useState(placeholderObj)    
+    const [randomQuote, setRandomQuote] = useState(null)  
+    const [randomQuoteCharacter, setRandomQuoteCharacter] = useState(null)  
+    const [randomQuoteBook, setRandomQuoteBook] = useState(null)  
+
     
-    const [charNumber, setCharNumber] = useState(1)
+    const [characterNumber, setCharacterNumber] = useState(1)
     const [bookNumber, setBookNumber] = useState(1)
     const [quoteNumber, setQuoteNumber] = useState(null)
     
@@ -28,7 +26,7 @@ function Home(){
         .then( r => r.json())
         .then( data => {
             setCharacters(data)
-            setCharNumber(Math.floor(Math.random() * data.length) )
+            setCharacterNumber(Math.floor(Math.random() * data.length) )
         })
     }, [])
 
@@ -53,43 +51,106 @@ function Home(){
         .then(r => r.json())
         .then( data => {
             setRandomQuote(data)
+            if (data){
+                setRandomQuoteCharacter(data.character.name)
+                setRandomQuoteBook(data.book.title)
+            } 
+            else {
+                console.log("data loading...")
+            }
         })
     }, [quoteNumber])
-    
+
+    useEffect( () => {
+        fetch("/characters/"+characterNumber)
+        .then(r => r.json())
+        .then( data => {
+            setRandomCharacter(data)
+        })
+    }, [characterNumber])
+
+    useEffect( () => {
+        fetch("/books/"+bookNumber)
+        .then(r => r.json())
+        .then( data => {
+            setRandomBook(data)
+        })
+    }, [bookNumber])
 
     return(
         <div className='content'>
-            <h2>Home  </h2>
-            <p> This web app is a REST API intended for other developers to use for text in their own projects.  </p>
-            <h3> Available endpoints:</h3>
-            <h4>Quotes:</h4>
-            <p> Send requests to:
+            <h2>Welcome!   </h2>
+            <p> This free REST API provides quotes from the works of Lewis Carroll for deveoplers to use in their projects. 
+                Keep reading to see a list of available endpoints and a demonstration of the responses they send back. 
+                Feel free to use this API in any project where you need sample filler text, such as a demonstration of a chat app, social platform, or review page. 
+                Happy coding!  </p>
+            <h2> Available endpoints:</h2>
+            <h3>Quotes:</h3>
+            <p> Get one quote:
                 <br /> <br />
-                 <code>https://wonderland-api.herokuapp.com/quotes</code> <a href="https://wonderland-api.herokuapp.com/quotes" target="_blank" className="tryit"> TRY IT!  </a></p>
+                 <code>
+                    { quoteNumber? <span>https://wonderland-api.herokuapp.com/quotes/{quoteNumber} </span> : <span>Loading...</span>}
+                </code> 
+                <a href={"https://wonderland-api.herokuapp.com/quotes/"+quoteNumber} target="_blank" className="tryit"> open  </a></p>
             
-                 { quoteNumber? <span>https://wonderland-api.herokuapp.com/quotes/{quoteNumber} </span> : <span>Loading...</span>}
                  <br />
-                 Response : <br /><br />
+                 Response Preview: <br /><br />
                 <div className='responsePreview'>
                 &#123; <br />
                 "id": &nbsp; 
                 { quoteNumber? <span>{quoteNumber} </span> : <span>""</span>}, 
                  <br />
-                "quote": "{randomQuote ? randomQuote.quote : "Loading..."}"
+                "quote": "{randomQuote ? randomQuote.quote : "Loading..."}",
                 <br />
-                &#125;
-                </div>
+                "character": &#123; "name": {randomQuoteCharacter} &#125;,
+                 <br />
+                 "book": &#123; "title": {randomQuoteBook} &#125;
+                 <br />&#125;
+                 </div>
+                <br /><br />
+              
+                Get all the quotes: 
+                <br /><br />
+                <code>
+                    https://wonderland-api.herokuapp.com/quotes
+                </code> 
+                <a href="https://wonderland-api.herokuapp.com/quotes/" target="_blank" className="tryit"> open  </a>
 
-            <h4>Characters:</h4>
-            <p> Send requests to:
+
+                <h3>Characters:</h3>
+                <p> Get one character:
                 <br /> <br />
-                <code> https://wonderland-api.herokuapp.com/characters </code><a href="https://wonderland-api.herokuapp.com/characters" target="_blank" className="tryit"> TRY IT!  </a></p>
+                 <code>
+                    { characterNumber? <span>https://wonderland-api.herokuapp.com/character/{characterNumber} </span> : <span>Loading...</span>}
+                </code> 
+                <a href={"https://wonderland-api.herokuapp.com/characters/"+characterNumber} target="_blank" className="tryit"> open  </a></p>
             
-            <h4>Books:</h4>
-            <p> Send requests to:
-                <br /> <br />
-                <code>  https://wonderland-api.herokuapp.com/books </code> <a href="https://wonderland-api.herokuapp.com/books" target="_blank" className="tryit"> TRY IT!  </a></p>
-            
+                 <br />
+                 Response Preview: <br /><br />
+                <div className='responsePreview'>
+                &#123; <br />
+                "id": &nbsp; 
+                { characterNumber? <span>{characterNumber} </span> : <span>""</span>}, 
+                 <br />
+                "name": "{randomCharacter ? randomCharacter.name : "Loading..."}",
+                <br />
+                "species": "{randomCharacter ? randomCharacter.species : "Loading..."}",
+                 <br />
+                 "home":  "{randomCharacter ? randomCharacter.home : "Loading..."}"
+                 <br />&#125;
+                 </div>
+                <br /><br />
+              
+                Get all the characters: 
+                <br /><br />
+                <code>
+                    https://wonderland-api.herokuapp.com/characters
+                </code> 
+                <a href="https://wonderland-api.herokuapp.com/characters/" target="_blank" className="tryit"> open  </a>
+
+                
+
+                
 
         </div>
     )
