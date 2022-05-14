@@ -8,6 +8,7 @@
 #8F2D56 magenta  
 */
 
+@import url('https://fonts.googleapis.com/css2?family=Elsie+Swash+Caps:wght@400;900&family=Open+Sans:wght@500&display=swap');
 
 body {
   background-color: #162029;
@@ -15,20 +16,42 @@ body {
 }
 
 
-/* .App {
-  text-align: center;
-} */
-
-/* .App-logo {
-  height: 40vmin;
-  pointer-events: none;
-} */
-
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
 }
+
+#logo-div{
+  height: 23vmin;
+  margin: auto;
+  text-align: center;
+  width:1020px;
+}
+
+#h1-container{
+  width: 700px; 
+  float: left; 
+}
+
+h1{
+  font-family: 'Elsie Swash Caps'; 
+  font-size: 50pt;
+  text-align: center; 
+}
+
+#rabbit1{
+  width:150px;  
+  transform: scaleX(-1);
+  float: left; 
+}
+
+#rabbit2{
+  width: 150px;
+  float: left; 
+  
+}
+
 
 
 .link{
@@ -36,9 +59,17 @@ body {
   color: #8F2D56; 
 }
 
+.link:hover{
+  color: #2EC4B6; 
+}
+
 a {
   text-decoration: none;
   color: #8F2D56;
+}
+
+a:hover{
+  color: #2EC4B6; 
 }
 
 code {
@@ -62,7 +93,7 @@ code {
   margin-top: 0px; 
   background-color: #ffffff;
   color: #0e1419;
-  height: 40vmin;
+  min-height: 350px; 
   
 }
 
@@ -83,19 +114,10 @@ code {
   font-size: 16pt;
 }
 
-/* .logbtn {
-  background-color: #00000000;
-  color: #8F2D56;
-  padding: 10px; 
-  font-size: 20pt;
-  border: 0px
-} */
 
 .content{
   padding-left: 15px; 
 }
-
-
 
 .footer{
   background-color: #0e1419; 
@@ -126,3 +148,26 @@ code {
   }
 }
 
+@media only screen and (max-width: 600px) {
+  #h1-container{
+    width: 250px; 
+  }
+  h1{
+    font-size: 32pt;
+  }
+  #rabbit2 {
+    display: none;
+  }
+
+  .navlink{
+    font-size: 14pt;
+  }
+
+  .responsePreview{
+    width: 80%; 
+  }
+
+  #logo-div{
+    width: 80%; 
+  }
+}

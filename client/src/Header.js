@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, NavLink} from "react-router-dom";
+import whiterabbit from './whiterabbit.jpg'
 
 
 function Header ({isLoggedIn, user, handleLogout}) {
@@ -19,9 +20,13 @@ function Header ({isLoggedIn, user, handleLogout}) {
       <br />
       { isLoggedIn? "Welcome " + user + "!" : '\u00A0'}
 
-      <h1> Wonderland API </h1>
+      <div id="logo-div">
+        <img src={whiterabbit} id="rabbit1" />
+        <div id="h1-container"><h1> Wonderland API </h1></div>
+        <img src={whiterabbit} id="rabbit2" />
+      </div>
 
-      {/* <img src="https://www.alice-in-wonderland.net/wp-content/uploads/1book36.jpg" height="100px"/> */}
+
         </div>
     )
 }
