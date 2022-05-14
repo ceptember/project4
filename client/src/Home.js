@@ -60,7 +60,6 @@ function Home(){
     return(
         <div className='content'>
             <h2>Home  </h2>
-           charNumber: {charNumber}
             <p> This web app is a REST API intended for other developers to use for text in their own projects.  </p>
             <h3> Available endpoints:</h3>
             <h4>Quotes:</h4>
