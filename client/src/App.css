@@ -68,10 +68,15 @@ h1{
 
 a {
   text-decoration: none;
-  color: #8F2D56;
+  color: #2EC4B6;
 }
 
 a:hover{
+  
+  color: #8F2D56; 
+}
+
+.navlink:hover{
   color: #2EC4B6; 
 }
 
@@ -113,6 +118,7 @@ code {
 .navlink{
   padding: 10px; 
   font-size: 20pt;
+  color: #8F2D56;
 }
 
 .tryit{
