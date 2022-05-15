@@ -8,7 +8,7 @@
 #8F2D56 magenta  
 */
 
-@import url('https://fonts.googleapis.com/css2?family=Elsie+Swash+Caps:wght@400;900&family=Open+Sans:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Elsie+Swash+Caps:wght@400;900&family=Open+Sans:wght@500&family=Space+Mono&display=swap');
 
 body {
   background-color: #162029;
@@ -85,6 +85,8 @@ code {
   padding: 10px; 
   border-radius: 5px; 
   width: 500px;
+  font-family: 'Space Mono', monospace;
+
 }
 
 /* HEADER COMPONENT */
@@ -153,8 +155,14 @@ code {
     width: 250px; 
   }
   h1{
-    font-size: 32pt;
+    font-size: 28pt;
   }
+ 
+  #rabbit1 {
+    width: 28%;
+    margin: auto; 
+  }
+
   #rabbit2 {
     display: none;
   }
@@ -164,7 +172,7 @@ code {
   }
 
   .responsePreview{
-    width: 80%; 
+    width: 90%; 
   }
 
   #logo-div{

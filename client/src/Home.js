@@ -88,9 +88,9 @@ function Home(){
             <h3>Quotes:</h3>
             <p> Get one quote:
                 <br /> <br />
-                 <code>
+                <div className='responsePreview'>
                     { quoteNumber? <span>https://wonderland-api.herokuapp.com/quotes/{quoteNumber} </span> : <span>Loading...</span>}
-                </code> 
+                </div> 
                 <a href={"https://wonderland-api.herokuapp.com/quotes/"+quoteNumber} target="_blank" className="tryit"> open  </a></p>
             
                  <br />
@@ -111,18 +111,18 @@ function Home(){
               
                 Get all the quotes: 
                 <br /><br />
-                <code>
+                <div className='responsePreview'>
                     https://wonderland-api.herokuapp.com/quotes
-                </code> 
+                </div> 
                 <a href="https://wonderland-api.herokuapp.com/quotes/" target="_blank" className="tryit"> open  </a>
 
 
                 <h3>Characters:</h3>
                 <p> Get one character:
                 <br /> <br />
-                 <code>
+                <div className='responsePreview'>
                     { characterNumber? <span>https://wonderland-api.herokuapp.com/character/{characterNumber} </span> : <span>Loading...</span>}
-                </code> 
+                </div> 
                 <a href={"https://wonderland-api.herokuapp.com/characters/"+characterNumber} target="_blank" className="tryit"> open  </a></p>
             
                  <br />
@@ -143,9 +143,9 @@ function Home(){
               
                 Get all the characters: 
                 <br /><br />
-                <code>
+                <div className='responsePreview'>
                     https://wonderland-api.herokuapp.com/characters
-                </code> 
+                </div> 
                 <a href="https://wonderland-api.herokuapp.com/characters/" target="_blank" className="tryit"> open  </a>
 
                 
