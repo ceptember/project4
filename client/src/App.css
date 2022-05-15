@@ -15,6 +15,9 @@ body {
   color: #F6F7F8; 
 }
 
+p {
+  width: 75%; 
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -84,10 +87,11 @@ code {
   border: 2px solid #0e1419; 
   padding: 10px; 
   border-radius: 5px; 
-  width: 500px;
+  width: 690px;
   font-family: 'Space Mono', monospace;
-
 }
+
+
 
 /* HEADER COMPONENT */
 
@@ -150,7 +154,7 @@ code {
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 700px) {
   #h1-container{
     width: 250px; 
   }
@@ -178,4 +182,9 @@ code {
   #logo-div{
     width: 80%; 
   }
+
+  p {
+    width: 100%; 
+  }
+
 }

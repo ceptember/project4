@@ -80,7 +80,7 @@ function Home(){
     return(
         <div className='content'>
             <h2>Welcome!   </h2>
-            <p> This free REST API provides quotes from the works of Lewis Carroll for deveoplers to use in their projects. 
+            <p> This free REST API provides quotes from the works of Lewis Carroll for developers to use in their projects. 
                 Keep reading to see a list of available endpoints and a demonstration of the responses they send back. 
                 Feel free to use this API in any project where you need sample filler text, such as a demonstration of a chat app, social platform, or review page. 
                 Happy coding!  </p>
