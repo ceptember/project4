@@ -8,7 +8,7 @@ This project is a REST API that provides quotes from the works of Lewis Carroll.
 
 ## Using the API 
 
-This API is available at [https://wonderland-api.herokuapp.com/](https://wonderland-api.herokuapp.com/). In
+This API is available at [https://wonderland-api.herokuapp.com/](https://wonderland-api.herokuapp.com/). 
 
 ### Authentication 
 The current version of Wonderland API is free and open to use without an authentication token. Subsequent versions may add in authentication if the creator and/or contributors deem it warranted. 
@@ -38,12 +38,12 @@ See here for additional help in using Fetch to get data from an API: [https://de
 
 ### Available Endpoints 
 
-• https://wonderland-api.herokuapp.com/quotes will return all of the quotes.
-• Adding an id number, such as https://wonderland-api.herokuapp.com/quotes/45, will return a single quote.
-• https://wonderland-api.herokuapp.com/characters will return all of the characters.
-• Adding an id number, such as https://wonderland-api.herokuapp.com/characters/1, will return a single character.
-• https://wonderland-api.herokuapp.com/books will return all of the books.
-• Adding an id number, such as https://wonderland-api.herokuapp.com/books/1, will return a single book.
+• https://wonderland-api.herokuapp.com/quotes will return all of the quotes.  
+• Adding an id number, such as https://wonderland-api.herokuapp.com/quotes/45, will return a single quote.  
+• https://wonderland-api.herokuapp.com/characters will return all of the characters.  
+• Adding an id number, such as https://wonderland-api.herokuapp.com/characters/1, will return a single character.  
+• https://wonderland-api.herokuapp.com/books will return all of the books.  
+• Adding an id number, such as https://wonderland-api.herokuapp.com/books/1, will return a single book.  
 
 ## Modifying and Contributing 
 
@@ -64,9 +64,9 @@ Feel free to clone this repository and use it as per the above license.
 
 Requirements: 
 
-•  Ruby 2.7.4
-•  NodeJS (v16), and npm
-•  Postgresql
+•  Ruby 2.7.4  
+•  NodeJS (v16), and npm  
+•  Postgresql  
 
 ### Contributing 
 
