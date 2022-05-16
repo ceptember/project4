@@ -63,6 +63,40 @@ function Documentation(){
 
             </p>
 
+            <h3>Available Endpoints</h3>
+            <ul>
+                <li>
+                    <a href="https://wonderland-api.herokuapp.com/quotes" target="_blank">https://wonderland-api.herokuapp.com/quotes </a>
+                    will return all of the quotes. 
+                </li>
+
+                <li> Adding an id number, such as 
+                    <a href="https://wonderland-api.herokuapp.com/quotes/45" target="_blank"> https://wonderland-api.herokuapp.com/quotes/45</a>, 
+                    will return a single quote. 
+                </li>
+
+                <li>
+                    <a href="https://wonderland-api.herokuapp.com/characters" target="_blank">https://wonderland-api.herokuapp.com/characters </a>
+                    will return all of the characters. 
+                </li>
+
+                <li> Adding an id number, such as 
+                    <a href="https://wonderland-api.herokuapp.com/characters/1" target="_blank"> https://wonderland-api.herokuapp.com/characters/1</a>, 
+                    will return a single character. 
+                </li>
+
+                <li>
+                    <a href="https://wonderland-api.herokuapp.com/books" target="_blank">https://wonderland-api.herokuapp.com/books </a>
+                    will return all of the books. 
+                </li>
+
+                <li> Adding an id number, such as 
+                    <a href="https://wonderland-api.herokuapp.com/books/1" target="_blank"> https://wonderland-api.herokuapp.com/books/1</a>, 
+                    will return a single book. 
+                </li>
+
+            </ul>
+
             <h3>Copyright</h3>
             <p>
                 Wonderland API is copyrighted under the MIT License. 
