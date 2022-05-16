@@ -17,6 +17,8 @@ body {
 
 p {
   width: 75%; 
+  line-height: 1.5em;
+
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -41,6 +43,11 @@ h1{
   font-family: 'Elsie Swash Caps'; 
   font-size: 50pt;
   text-align: center; 
+}
+
+h3 {
+  margin-top: 40px; 
+  margin-bottom: 20px; 
 }
 
 #rabbit1{
@@ -72,7 +79,6 @@ a {
 }
 
 a:hover{
-  
   color: #8F2D56; 
 }
 

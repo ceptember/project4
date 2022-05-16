@@ -25,15 +25,19 @@ function Documentation(){
                 From the terminal, the request and response would look as follows: 
             </p>
 
+            <br /> 
             <div className='responsePreview' >
                 $ curl "https://wonderland-api.herokuapp.com/quotes/45"
                 <br /> <br />
                 &#123; "id":45,"quote":"We're all mad here. I'm mad. You're mad. You must be, or you wouldn't have come here.","character": &#123;"name":"Cheshire Cat" &#125;,"book": &#123;"title":"Alice's Adventures in Wonderland" &#125; 
             </div>
+            <br /> 
 
             <p>
                 If using the data for a web app, you can include the following in your JavaScript file:
             </p>
+
+            <br />
 
             <div className='responsePreview' >
                 fetch("https://wonderland-api.herokuapp.com/quotes/1") <br />
@@ -43,6 +47,7 @@ function Documentation(){
                 )
                 &#125;
             </div>
+            <br /> 
 
             <p>
                 You can then manipulate the data as you would any JavaScript object. 
