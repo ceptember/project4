@@ -36,7 +36,7 @@ class BooksController < ApplicationController
         current_user = User.find_by(id: session[:user_id])
         if current_user
             book.destroy
-            render json {}, status: :ok 
+            render json: {}, status: :ok 
         else
             render json: {error: "unauthorized"}, status: :unauthorized
         end 

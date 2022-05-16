@@ -72,9 +72,7 @@ function Admin(){
         fetch("/books/"+bookID, {
             method: "DELETE"
         })
-        .then(r => r.json())
-        .then( data => {
-            console.log(data)
+        .then( () => {
             let newBooks = books.filter( b => b.id != bookID)
             setBooks(newBooks)
         })
@@ -148,8 +146,8 @@ function Admin(){
         e.preventDefault() 
         let quoteObj = {
             quote: qQuote,
-            character_id: 1, // NEED TO GET CHARACTER ID
-            book_id: 1 // NEED TO GET BOOK ID
+            character_id: qCharacter,
+            book_id: qBook
         }
 
         fetch("/quotes", {
@@ -158,7 +156,11 @@ function Admin(){
             body: JSON.stringify(quoteObj)
         })
         .then(r => r.json())
-        .then(data => console.log(data))
+        .then(data => {
+            console.log(data)
+            let newQuotes = [...quotes, data]
+            setQuotes(newQuotes)
+        })
 
         setQQuote("")
         setQCharacter("")
@@ -226,14 +228,14 @@ function Admin(){
                 <br />
                 Character: <select value={qCharacter} onChange={ e => setQCharacter(e.target.value)} > 
                     <option selected disabled>Characters</option>
-                    { characters.map( c => <option value={c.name}>{c.name}</option>)}
+                    { characters.map( c => <option value={c.id}>{c.name}</option>)}
                
                 </select>
                  
                 <br />
                 Book: <select value={qBook} onChange={e=> setQBook(e.target.value)}>
                     <option selected disabled>Books</option>
-                    { books.map( b => <option value={b.title}>{b.title}</option> )}
+                    { books.map( b => <option value={b.id}>{b.title}</option> )}
                 </select>
                 <br />
                 <input type="submit"></input>

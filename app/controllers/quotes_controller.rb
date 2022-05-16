@@ -10,12 +10,11 @@ class QuotesController < ApplicationController
         render json: quote, status: :ok 
     end 
 
-    # ########### NEED TO GET CHARACTER AND BOOK ID ############### 
     def create 
         current_user = User.find_by(id: session[:user_id])
         if current_user
             quote = Quote.create!(quote_params)
-            render json: quote, status: :ok 
+            render json: quote, status: :created 
         else 
             render json: {error: "unauthorized"}, status: :unauthorized
         end 
