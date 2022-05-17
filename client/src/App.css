@@ -178,12 +178,13 @@ code {
     width: 250px; 
   }
   h1{
-    font-size: 28pt;
+    font-size: 22pt;
   }
  
   #rabbit1 {
-    width: 28%;
-    margin: auto; 
+    width: 40%; 
+    margin-left:30%;
+    display: block;
   }
 
   #rabbit2 {
@@ -199,7 +200,7 @@ code {
   }
 
   #logo-div{
-    width: 80%; 
+    width: 300px; 
   }
 
 
