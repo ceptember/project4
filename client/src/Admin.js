@@ -196,8 +196,6 @@ function Admin(){
     return (
         <div>
             <h2>Manage the Database  </h2>
-            <h3> This form is only shown when the admin is logged in </h3>
-
             <h4>Add a new book:</h4>
             <form onSubmit={ e => handleNewBook(e)}>
             Title: <input value={bTitle} onChange={ e => setBTitle(e.target.value) }></input> 
